@@ -254,7 +254,7 @@ docs/thumbnail/      HTML source + Playwright export for the cover image
 
 ## License
 
-[MIT](LICENSE) © 2026 HyTechster. Use it, learn from it, build on it; just keep the copyright notice.
+[MIT](LICENSE.md) © 2026 Wan Amirul Amir bin Wan Romzi. Use it, learn from it, build on it; just keep the copyright notice.
 
 The demo photos in `assets/demo/` are from [Unsplash](https://unsplash.com/license) via Lorem Picsum and fall
 under the Unsplash License, not MIT. The demo routes are synthetic.
