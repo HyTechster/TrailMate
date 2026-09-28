@@ -1,0 +1,83 @@
+{
+  "expo": {
+    "name": "TrailMate",
+    "slug": "trailmate",
+    "scheme": "trailmate",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#EDF1E8",
+    "ios": {
+      "bundleIdentifier": "com.trailmate.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "UIBackgroundModes": ["location"],
+        "NSLocationWhenInUseUsageDescription": "TrailMate uses your location to draw your route and measure distance, pace and elevation.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow all the time so TrailMate keeps recording your hike or run while the phone is locked in your pocket. Your route never leaves your phone.",
+        "NSLocationAlwaysUsageDescription": "Allow all the time so TrailMate keeps recording your hike or run while the phone is locked in your pocket.",
+        "NSCameraUsageDescription": "Take photos on the trail and pin them to your route.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.trailmate.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#1D4A33",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "CAMERA",
+        "POST_NOTIFICATIONS",
+        "VIBRATE",
+        "WAKE_LOCK"
+      ],
+      "blockedPermissions": ["RECORD_AUDIO", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      "expo-sharing",
+      "expo-font",
+      "expo-asset",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "backgroundColor": "#1D4A33",
+          "dark": { "backgroundColor": "#0B1611" }
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "TrailMate uses your location to draw your route and measure distance, pace and elevation.",
+          "locationAlwaysAndWhenInUsePermission": "Allow all the time so TrailMate keeps recording your hike or run while the phone is locked in your pocket. Your route never leaves your phone.",
+          "isIosBackgroundLocationEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Take photos on the trail and pin them to your route.",
+          "photosPermission": false,
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

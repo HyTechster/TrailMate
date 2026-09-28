@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>TrailMate thumbnail</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+<style>
+  /* Same fonts and tokens as the app (src/theme/tokens.ts). */
+  @font-face { font-family: 'Bricolage'; font-weight: 800; src: url('../../node_modules/@expo-google-fonts/bricolage-grotesque/800ExtraBold/BricolageGrotesque_800ExtraBold.ttf'); }
+  @font-face { font-family: 'Bricolage'; font-weight: 600; src: url('../../node_modules/@expo-google-fonts/bricolage-grotesque/600SemiBold/BricolageGrotesque_600SemiBold.ttf'); }
+  @font-face { font-family: 'Bricolage'; font-weight: 500; src: url('../../node_modules/@expo-google-fonts/bricolage-grotesque/500Medium/BricolageGrotesque_500Medium.ttf'); }
+  @font-face { font-family: 'Space'; font-weight: 700; src: url('../../node_modules/@expo-google-fonts/space-grotesk/700Bold/SpaceGrotesk_700Bold.ttf'); }
+
+  :root {
+    --forest-deep: #12301F;
+    --forest: #1D4A33;
+    --contour: #2C6247;
+    --moss: #9CC46A;
+    --on-forest: #F0F5EA;
+    --on-forest-muted: #A9C3B0;
+    --accent: #FF5A1F;
+    --on-accent: #1A0C04;
+    --ink: #0F2419;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--forest-deep); }
+
+  .stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(1200px 900px at 78% 40%, #2A6446 0%, rgba(42, 100, 70, 0) 60%),
+      radial-gradient(900px 700px at 8% 100%, #183F2B 0%, rgba(24, 63, 43, 0) 70%),
+      linear-gradient(120deg, #0F2A1C 0%, #174029 45%, #1F5037 100%);
+    font-family: 'Bricolage', system-ui, sans-serif;
+    color: var(--on-forest);
+  }
+
+  svg.layer { position: absolute; inset: 0; }
+
+  /* ---------- left copy ---------- */
+  .copy {
+    position: absolute;
+    left: 128px;
+    top: 0;
+    bottom: 0;
+    width: 820px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    z-index: 3;
+  }
+
+  .brand { display: flex; align-items: center; gap: 30px; }
+  .blaze { position: relative; width: 92px; height: 116px; flex: none; }
+  .blaze i {
+    position: absolute;
+    width: 50px;
+    height: 51px;
+    border-radius: 12px;
+    background: var(--accent);
+    box-shadow: 0 10px 30px rgba(255, 90, 31, 0.28);
+  }
+  .blaze i:first-child { left: 0; top: 0; }
+  .blaze i:last-child { left: 42px; top: 65px; }
+
+  .wordmark {
+    font-weight: 800;
+    font-size: 146px;
+    line-height: 0.95;
+    letter-spacing: -5px;
+  }
+
+  .tagline {
+    font-weight: 600;
+    font-size: 62px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--on-forest);
+  }
+  .tagline em { font-style: normal; color: var(--accent); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 16px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 26px 16px 20px;
+    border-radius: 999px;
+    background: rgba(240, 245, 234, 0.1);
+    border: 1.5px solid rgba(240, 245, 234, 0.2);
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--on-forest);
+  }
+  .chip i { font-size: 32px; color: var(--accent); }
+
+  .stack {
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    color: var(--on-forest-muted);
+  }
+
+  /* Stack line and credit sit together as one quiet signature block. */
+  .meta { display: flex; flex-direction: column; gap: 10px; }
+  .credit {
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.3px;
+    color: var(--on-forest-muted);
+    opacity: 0.85;
+  }
+  .credit b { font-weight: 600; color: var(--on-forest); }
+
+  /* ---------- phones ---------- */
+  .phone {
+    position: absolute;
+    width: 430px;
+    height: 932px;
+    border-radius: 68px;
+    padding: 14px;
+    background: linear-gradient(145deg, #2B3A31 0%, #151E19 55%, #0C120E 100%);
+    box-shadow:
+      inset 0 0 0 2px rgba(255, 255, 255, 0.08),
+      inset 0 2px 0 rgba(255, 255, 255, 0.12),
+      0 60px 120px rgba(5, 16, 10, 0.55),
+      0 18px 40px rgba(5, 16, 10, 0.4);
+  }
+  .phone .screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 56px;
+    overflow: hidden;
+    background: #0B1611;
+    position: relative;
+  }
+  /* Crop the device status bar out of the screenshots; the frame is generic. */
+  .phone .screen img { width: 100%; height: calc(100% + 26px); margin-top: -26px; object-fit: cover; object-position: center top; display: block; }
+  .phone .button { position: absolute; right: -4px; width: 5px; border-radius: 3px; background: #26332B; }
+
+  .phone.front { right: 196px; top: 74px; z-index: 3; }
+  .phone.back {
+    right: 500px;
+    top: 150px;
+    z-index: 2;
+    transform: rotate(-8deg) scale(0.9);
+    transform-origin: center;
+    opacity: 0.96;
+  }
+  .phone.back::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 68px;
+    background: linear-gradient(90deg, rgba(10, 25, 17, 0.35), rgba(10, 25, 17, 0));
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <svg class="layer" id="topo" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+  <svg class="layer" id="route" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" style="z-index:1">
+    <path id="routePath" d="M -40 1010 C 180 960, 260 880, 420 900 S 690 1010, 860 930 S 1080 760, 1180 800 S 1360 900, 1480 760 S 1600 520, 1760 470 S 1900 380, 1990 300"
+      fill="none" stroke="rgba(240,245,234,0.9)" stroke-width="22" stroke-linecap="round" />
+    <path d="M -40 1010 C 180 960, 260 880, 420 900 S 690 1010, 860 930 S 1080 760, 1180 800 S 1360 900, 1480 760 S 1600 520, 1760 470 S 1900 380, 1990 300"
+      fill="none" stroke="#FF5A1F" stroke-width="12" stroke-linecap="round" />
+    <circle cx="420" cy="900" r="15" fill="#F0F5EA" stroke="#FF5A1F" stroke-width="7" />
+  </svg>
+
+  <div class="copy">
+    <div class="brand">
+      <div class="blaze"><i></i><i></i></div>
+      <div class="wordmark">TrailMate</div>
+    </div>
+    <div class="tagline">Track every trail.<br /><em>Even offline.</em></div>
+    <div class="chips">
+      <span class="chip"><i class="ph-bold ph-navigation-arrow"></i>Background GPS</span>
+      <span class="chip"><i class="ph-bold ph-camera"></i>Photo pins</span>
+      <span class="chip"><i class="ph-bold ph-wifi-slash"></i>Works offline</span>
+    </div>
+    <div class="meta">
+      <div class="stack">React Native&nbsp;&nbsp;·&nbsp;&nbsp;Expo&nbsp;&nbsp;·&nbsp;&nbsp;TypeScript</div>
+      <div class="credit">by <b>HyTechster</b></div>
+    </div>
+  </div>
+
+  <div class="phone back">
+    <div class="screen"><img src="../screenshots/summary.png" alt="" /></div>
+  </div>
+  <div class="phone front">
+    <div class="button" style="top: 210px; height: 90px"></div>
+    <div class="button" style="top: 320px; height: 60px"></div>
+    <div class="screen"><img src="../screenshots/record-live.png" alt="" /></div>
+  </div>
+</div>
+
+<script>
+  // Topographic contours, same generator as src/components/TopoPattern.tsx.
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  const svg = document.getElementById('topo');
+  const rnd = mulberry32(29);
+  const peaks = [
+    [220, 170, 15], [1500, 180, 12], [980, 1040, 14], [1850, 900, 10], [640, 520, 9],
+  ];
+  for (const [cx, cy, rings] of peaks) {
+    const k1 = 2 + Math.floor(rnd() * 2), k2 = 3 + Math.floor(rnd() * 3);
+    const ph1 = rnd() * 6.28, ph2 = rnd() * 6.28, stretch = 0.75 + rnd() * 0.5;
+    for (let r = 1; r <= rings; r++) {
+      const rad = r * 46;
+      let d = '';
+      for (let i = 0; i <= 90; i++) {
+        const t = (i / 90) * Math.PI * 2;
+        const w = 1 + 0.16 * Math.sin(k1 * t + ph1 + r * 0.35) + 0.07 * Math.sin(k2 * t + ph2 - r * 0.2);
+        const x = cx + Math.cos(t) * rad * w * stretch;
+        const y = cy + Math.sin(t) * rad * w;
+        d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+      }
+      const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', d + 'Z');
+      p.setAttribute('fill', 'none');
+      p.setAttribute('stroke', r % 4 === 0 ? 'rgba(156,196,106,0.22)' : 'rgba(156,196,106,0.11)');
+      p.setAttribute('stroke-width', r % 4 === 0 ? '2' : '1.4');
+      svg.appendChild(p);
+    }
+  }
+</script>
+</body>
+</html>
